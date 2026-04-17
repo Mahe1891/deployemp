@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>About - Employee Management System</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #4facfe, #8e44ad);
+    color: white;
+}
+
+/* 🔥 HEADER */
+.navbar {
+    background: rgba(0,0,0,0.7) !important;
+    backdrop-filter: blur(10px);
+}
+
+.navbar img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero h1 {
+    font-weight: bold;
+}
+
+/* CONTENT */
+.wrapper {
+    flex: 1;
+    padding: 20px;
+}
+
+.card {
+    border-radius: 20px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(15px);
+    border: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* FOOTER */
+footer {
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔥 PREMIUM HEADER -->
+<nav class="navbar navbar-expand-lg navbar-dark shadow sticky-top">
+    <div class="container">
+
+        <a class="navbar-brand d-flex align-items-center fw-bold fs-5" href="#">
+            <img src="https://static.vecteezy.com/system/resources/previews/020/859/601/non_2x/employee-management-icon-design-free-vector.jpg">
+            <span class="ms-2">Employee Management System</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto text-center">
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold px-3" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold px-3 text-warning" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold px-3" href="/contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>About Employee Management System</h1>
+    <p class="mt-3">
+        A smart solution to manage employee data efficiently.
+    </p>
+</div>
+
+<!-- CONTENT -->
+<div class="wrapper container">
+
+    <div class="row g-4">
+
+        <!-- Purpose -->
+        <div class="col-12 col-md-6">
+            <div class="card p-4">
+                <h4>Our Purpose</h4>
+                <p>
+                    The Employee Management System simplifies employee data handling,
+                    attendance tracking, and payroll management efficiently.
+                </p>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="col-12 col-md-6">
+            <div class="card p-4">
+                <h4>Key Features</h4>
+                <ul>
+                    <li>Employee Registration</li>
+                    <li>Attendance Tracking</li>
+                    <li>Payroll Management</li>
+                    <li>Department Handling</li>
+                    <li>Report Generation</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Technologies -->
+        <div class="col-12">
+            <div class="card p-4">
+                <h4>Technologies Used</h4>
+                <p>
+                    Built using HTML, CSS, Bootstrap, Python (Flask), and MySQL.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- 🔥 PREMIUM FOOTER -->
+<footer class="text-white mt-auto">
+    <div class="container text-center py-4">
+        <h6 class="fw-bold">⚡ Employee Management System</h6>
+        <p class="mb-1 small">Simple • Smart • Efficient</p>
+        <small>© 2026 All Rights Reserved</small>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

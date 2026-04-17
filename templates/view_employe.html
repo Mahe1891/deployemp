@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>View Employees</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #4facfe, #8e44ad);
+    color: white;
+}
+
+/* 🔥 HEADER */
+.navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.7) !important;
+}
+
+.navbar img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-right: 10px;
+}
+
+/* FLASH */
+.flash-container {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    z-index: 9999;
+}
+
+/* CONTENT */
+.wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* CARD */
+.table-card {
+    width: 100%;
+    max-width: 1100px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* TABLE */
+.table {
+    color: white;
+}
+
+.table th {
+    background: rgba(0,0,0,0.3);
+}
+
+.table td {
+    background: rgba(255,255,255,0.1);
+}
+
+.table tbody tr:hover td {
+    background: rgba(255,255,255,0.2);
+}
+
+/* BUTTONS */
+.edit {
+    background: #22c55e;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.delete {
+    background: #ef4444;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+/* FOOTER */
+footer {
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔥 RESPONSIVE HEADER -->
+<nav class="navbar navbar-expand-lg navbar-dark shadow sticky-top">
+    <div class="container">
+
+        <!-- LOGO -->
+        <a class="navbar-brand d-flex align-items-center fw-bold fs-5" href="#">
+            <img src="https://static.vecteezy.com/system/resources/previews/020/859/601/non_2x/employee-management-icon-design-free-vector.jpg">
+            Employee Management System
+        </a>
+
+        <!-- TOGGLE -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- MENU -->
+        <div class="collapse navbar-collapse" id="navmenu">
+
+            <!-- SEARCH -->
+            <form class="d-flex flex-column flex-lg-row gap-2 w-100 my-3 my-lg-0" method="GET" action="/view">
+                <input type="search" name="search" class="form-control"
+                       placeholder="Search employee..."
+                       value="{{ request.args.get('search','') }}">
+                <button class="btn btn-light">Search</button>
+            </form>
+
+            <!-- LINKS -->
+            <ul class="navbar-nav ms-lg-auto text-center">
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="/add_employee">Add</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold text-danger" href="/logout">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+
+<!-- FLASH -->
+<div class="flash-container">
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{category}} alert-dismissible fade show shadow">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+</div>
+
+<!-- CONTENT -->
+<div class="wrapper">
+
+    <div class="table-card">
+
+        <h2 class="text-center mb-4 fw-bold">Employee List</h2>
+
+        <div class="table-responsive">
+        <table class="table table-bordered text-center align-middle">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% if employyes %}
+                {% for e in employyes %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{e[1]}}</td>
+                    <td>{{e[2]}}</td>
+                    <td>{{e[3]}}</td>
+                    <td>{{e[4]}}</td>
+                    <td>
+                        <a href="/edit/{{e[0]}}" class="edit">Edit</a>
+                        <a href="/delete/{{e[0]}}" class="delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6">No Employees Found</td>
+                </tr>
+            {% endif %}
+            </tbody>
+
+        </table>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- 🔥 FOOTER -->
+<footer class="text-white mt-auto">
+    <div class="container text-center py-4">
+        <h6 class="fw-bold">⚡ Employee Management System</h6>
+        <p class="mb-1 small">Manage • Track • Grow</p>
+        <small>© 2026 All Rights Reserved</small>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
