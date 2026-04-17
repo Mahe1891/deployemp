@@ -105,6 +105,40 @@ footer {
     background: rgba(0,0,0,0.8);
     backdrop-filter: blur(10px);
 }
+/* SEARCH BAR CONTAINER */
+.search-bar{
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+    background: rgba(255,255,255,0.15);
+    padding: 8px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+}
+
+/* INPUT */
+.search-input{
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    outline: none;
+    box-shadow: none;
+}
+
+/* BUTTON */
+.search-btn{
+    border-radius: 50px;
+    padding: 10px 20px;
+    background: linear-gradient(to right,#4facfe,#00f2fe);
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+
+/* HOVER */
+.search-btn:hover{
+    background: linear-gradient(to right,#43e97b,#38f9d7);
+}
 </style>
 </head>
 
@@ -117,7 +151,7 @@ footer {
         <!-- LOGO -->
         <a class="navbar-brand d-flex align-items-center fw-bold fs-5" href="#">
             <img src="https://static.vecteezy.com/system/resources/previews/020/859/601/non_2x/employee-management-icon-design-free-vector.jpg">
-            Employee Management System
+            Employee System
         </a>
 
         <!-- TOGGLE -->
@@ -128,13 +162,7 @@ footer {
         <!-- MENU -->
         <div class="collapse navbar-collapse" id="navmenu">
 
-            <!-- SEARCH -->
-            <form class="d-flex flex-column flex-lg-row gap-2 w-100 my-3 my-lg-0" method="GET" action="/view">
-                <input type="search" name="search" class="form-control"
-                       placeholder="Search employee..."
-                       value="{{ request.args.get('search','') }}">
-                <button class="btn btn-light">Search</button>
-            </form>
+            
 
             <!-- LINKS -->
             <ul class="navbar-nav ms-lg-auto text-center">
@@ -150,7 +178,16 @@ footer {
 
     </div>
 </nav>
+<!-- SEARCH -->
+<form class="search-bar d-flex align-items-center" method="GET" action="/view">
+    
+    <input type="search" name="search" class="form-control search-input"
+           placeholder="🔍 Search employee..."
+           value="{{ request.args.get('search','') }}">
 
+    <button class="btn search-btn">Search</button>
+
+</form>
 <!-- FLASH -->
 <div class="flash-container">
 {% with messages = get_flashed_messages(with_categories=true) %}
